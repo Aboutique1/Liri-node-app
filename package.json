@@ -20,11 +20,9 @@
   "homepage": "https://github.com/Aboutique1/Liri-node-app#readme",
   "dependencies": {
     "dotenv": "^8.1.0",
-    "node-spotify-api": "^1.1.1",
-    "spoken": "^1.1.17"
+    "node-spotify-api": "^1.1.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-latest": "^6.24.1"
