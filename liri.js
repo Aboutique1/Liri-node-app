@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const axios = require('axios')
 var player = require('play-sound') (opts = {})
 
 var Spotify = require('node-spotify-api');
@@ -37,7 +38,21 @@ if(functionToRun=='spotify-this'){
               return console.log('Error occurred: ' + err);
             }
            
-          console.log(JSON.stringify(data.items,null,4)); 
+            if (data.tracks.total==0){
+                spotify.search({ type: 'track', query: 'The Sign by Ace of Base', limit:1 }, function(err, data) {
+                    if (err) {
+                      return console.log('Error occurred: ' + err);
+                    }
+                    console.log("Album: ", data.tracks.items[0].album.name ,"Song Title: ",data.tracks.items[0].name, "Preview: ",JSON.stringify(data.tracks.items[i].preview_url))
+                    var artistArray = []
+            for (var A=0;A<data.tracks.items[i].artists.length;A++){
+                artistArray.push(data.tracks.items[i].artists[A].name)
+            }
+            console.log ("Artist(s) on this Album: ",JSON.stringify(artistArray) +"\n" )
+                })
+            }
+
+          console.log(JSON.stringify(data,null,4)); 
           for ( var i =0;i<data.tracks.items.length;i++){
            var number = i+1   
             console.log ("Album "+number+":",JSON.stringify(data.tracks.items[i].album.name), "Song: ",JSON.stringify(data.tracks.items[i].name), "Preview: ",JSON.stringify(data.tracks.items[i].preview_url))
@@ -56,6 +71,21 @@ if(functionToRun=='spotify-this'){
 if(functionToRun=='movie-this'){
     var command = commandToRun
     function movieThis(command){
+        const instance = axios.create({
+            baseURL: 'http://www.omdbapi.com/?apikey=697e013a', 
+            
+        })
+        instance.get('', {
+            params:{
+                t:command
+            }
+        })
+        .then(function(response){
+            console.log("Movie Response: ", response.data)
+        })
+        .catch(function(err){
+            console.log(err)
+        })
         console.log("You want me to find a movie for:", command)
     }
     movieThis(command)
@@ -89,3 +119,5 @@ function stop(){
 stop()
 
 }
+
+
