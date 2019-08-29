@@ -37,7 +37,17 @@ if(functionToRun=='spotify-this'){
               return console.log('Error occurred: ' + err);
             }
            
-          console.log(JSON.stringify(data)); 
+          console.log(JSON.stringify(data.items,null,4)); 
+          for ( var i =0;i<data.tracks.items.length;i++){
+           var number = i+1   
+            console.log ("Album "+number+":",JSON.stringify(data.tracks.items[i].album.name), "Song: ",JSON.stringify(data.tracks.items[i].name), "Preview: ",JSON.stringify(data.tracks.items[i].preview_url))
+            var artistArray = []
+            for (var A=0;A<data.tracks.items[i].artists.length;A++){
+                artistArray.push(data.tracks.items[i].artists[A].name)
+            }
+            console.log ("Artist(s) on this Album: ",JSON.stringify(artistArray) +"\n" )
+
+          }
           });
     }
     spotifyThis(command)
