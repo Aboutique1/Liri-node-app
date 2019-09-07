@@ -7,4 +7,4 @@ Welcome to Amber's Liri Command Line App
 ~ I also added a little user experience touch to it. If user request the name of a unidentifiable song, LIRI will play for the first 12 seconds "Sorry You're Not My Kind Of Girl " by New Edition. ( Just to Lighten the load ). Ha!
 ~ My role in the app developement was being the creative director as well as coding.  
 
-
+![alt Example](https://github.com/Aboutique1/Liri-node-app/blob/master/ezgif.com-video-to-gif-2.gif)
